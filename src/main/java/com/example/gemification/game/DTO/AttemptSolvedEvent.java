@@ -3,7 +3,7 @@ package com.example.gemification.game.DTO;
 import lombok.Value;
 
 @Value
-public class AttemptDTO {
+public class AttemptSolvedEvent {
     Long id;
     String userAlies;
     Long userId;

@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.gemification.game.LeaderBoard;
 import com.example.gemification.game.service.LeaderBoardService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @RestController
+@Slf4j
 @RequestMapping("/leaderboard")
 public class LeaderBoardController {
     @Autowired
@@ -18,6 +21,7 @@ public class LeaderBoardController {
 
     @GetMapping
     public List<LeaderBoard> getLeaderBoard() {
+        log.info("Retrieving leaderboard");
         return leaderBoardService.getLeaderBoard();
     }
 }

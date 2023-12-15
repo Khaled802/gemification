@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.gemification.game.ScoreCard;
-import com.example.gemification.game.DTO.AttemptDTO;
+import com.example.gemification.game.DTO.AttemptSolvedEvent;
 import com.example.gemification.game.enums.BadgeType;
 
 @SpringBootTest
@@ -21,7 +21,7 @@ public class BronzeBadgeProcessorTest {
 
     @Test
     void testGetBadgeOrNullWithEqualToBadge() {
-        AttemptDTO attemptDTO = new AttemptDTO(10L, "Mohamed", 1L, 11, 20, true);
+        AttemptSolvedEvent attemptDTO = new AttemptSolvedEvent(10L, "Mohamed", 1L, 11, 20, true);
         List<ScoreCard> scoreCards = List.of(
             new ScoreCard(1L, 10L),
             new ScoreCard(1L, 6L),            
@@ -39,7 +39,7 @@ public class BronzeBadgeProcessorTest {
     
     @Test
     void testGetBadgeOrNullWithLessThanBadge() {
-        AttemptDTO attemptDTO = new AttemptDTO(5L, "Mohamed", 1L, 11, 20, true);
+        AttemptSolvedEvent attemptDTO = new AttemptSolvedEvent(5L, "Mohamed", 1L, 11, 20, true);
         List<ScoreCard> scoreCards = List.of(           
             new ScoreCard(1L, 5L),            
             new ScoreCard(1L, 2L),            
@@ -54,7 +54,7 @@ public class BronzeBadgeProcessorTest {
 
     @Test
     void testGetBadgeOrNullWithGreaterThanBadge() {
-        AttemptDTO attemptDTO = new AttemptDTO(10L, "Mohamed", 1L, 11, 20, true);
+        AttemptSolvedEvent attemptDTO = new AttemptSolvedEvent(10L, "Mohamed", 1L, 11, 20, true);
         List<ScoreCard> scoreCards = List.of(
             new ScoreCard(1L, 10L),
             new ScoreCard(1L, 6L),            

@@ -14,7 +14,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 
 import com.example.gemification.game.BadgeCard;
 import com.example.gemification.game.ScoreCard;
-import com.example.gemification.game.DTO.AttemptDTO;
+import com.example.gemification.game.DTO.AttemptSolvedEvent;
 import com.example.gemification.game.DTO.GameResultDTO;
 import com.example.gemification.game.enums.BadgeType;
 import com.example.gemification.game.repository.BadgeCardRepository;
@@ -45,7 +45,7 @@ public class GameServiceImpTest {
         given(scoreCardRepository.save(scoreCard)).willReturn(scoreCard);
         given(badgeCardRepository.saveAll(badgeCards)).willReturn(badgeCards);
 
-        AttemptDTO attemptDTO = new AttemptDTO(10L, "Mohamed", 1L, 20, 11, true);
+        AttemptSolvedEvent attemptDTO = new AttemptSolvedEvent(10L, "Mohamed", 1L, 20, 11, true);
         GameResultDTO gameResultDTO = gameService.addNewAttempt(attemptDTO);
 
         then(gameResultDTO.getTotalScore()).isEqualTo(ScoreCard.DEFAULT_SCORE);
@@ -66,7 +66,7 @@ public class GameServiceImpTest {
         given(badgeCardRepository.saveAll(List.of())).willReturn(List.of());
         given(scoreCardRepository.getTotalScore(1L)).willReturn(ScoreCard.DEFAULT_SCORE);
 
-        AttemptDTO attemptDTO = new AttemptDTO(10L, "Mohamed", 1L, 20, 11, false);
+        AttemptSolvedEvent attemptDTO = new AttemptSolvedEvent(10L, "Mohamed", 1L, 20, 11, false);
         GameResultDTO gameResultDTO = gameService.addNewAttempt(attemptDTO);
 
         then(gameResultDTO.getTotalScore()).isEqualTo(0);

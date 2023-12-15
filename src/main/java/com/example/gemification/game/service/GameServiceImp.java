@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.gemification.game.BadgeCard;
 import com.example.gemification.game.ScoreCard;
-import com.example.gemification.game.DTO.AttemptDTO;
+import com.example.gemification.game.DTO.AttemptSolvedEvent;
 import com.example.gemification.game.DTO.GameResultDTO;
 import com.example.gemification.game.badgeProcessors.BadgeProcessor;
 import com.example.gemification.game.enums.BadgeType;
@@ -27,7 +27,7 @@ public class GameServiceImp implements GameService {
 
 
     @Override
-    public GameResultDTO addNewAttempt(AttemptDTO attemptDTO) {
+    public GameResultDTO addNewAttempt(AttemptSolvedEvent attemptDTO) {
         if (!attemptDTO.isCorrect()) {
             return new GameResultDTO(0, List.of());
         }
@@ -38,12 +38,12 @@ public class GameServiceImp implements GameService {
         return new GameResultDTO(newScoreCard.getScore(), newBadgeCards);
     }
 
-    ScoreCard createScoreCard(AttemptDTO attemptDTO) {
+    ScoreCard createScoreCard(AttemptSolvedEvent attemptDTO) {
         ScoreCard scoreCard = new ScoreCard(attemptDTO.getUserId(), attemptDTO.getId());
         return scoreCardRepository.save(scoreCard);
     }
 
-    List<BadgeCard> creaBadgeCards(AttemptDTO attemptDTO) {
+    List<BadgeCard> creaBadgeCards(AttemptSolvedEvent attemptDTO) {
         Long userId = attemptDTO.getUserId();
         List<ScoreCard> scoreCards = scoreCardRepository.findByUserId(userId);
         List<BadgeCard> badgeCards = badgeCardRepository.findByUserId(userId);
